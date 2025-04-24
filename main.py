@@ -50,8 +50,8 @@ def predict():
         current_class_name = class_name[2:]
         current_confidence_score = str(np.round(confidence_score * 100))[:-2]
         
-        # Write the current class name and confidence score on the image if the confidence score is greater than 95%
-        if int(current_confidence_score) > 95:
+        # Write the current class name and confidence score on the image if the confidence score is greater than 99%
+        if int(current_confidence_score) > 99:
             finally_class_name = current_class_name
             finally_confidence_score = current_confidence_score
 
@@ -74,11 +74,14 @@ print(f"\n\nClass: {finally_class_name} \nConfidence Score: {finally_confidence_
 camera.release()
 cv2.destroyAllWindows()
 
+def create_window():
+    root = Tk()
+    root.title("Health Eating Assistant")
+    root.mainloop()
+
 def main():
     try:
-        root = Tk()
-        root.title("Health Eating Assistant")
-        root.mainloop()
+        create_window()
     except Exception as e:
         print(f"\n\nError: {str(e)}\n\n")
         messagebox.showerror("ERROR", f"Error: {str(e)}")
